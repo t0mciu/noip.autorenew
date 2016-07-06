@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+# Summary: The script avoid the need to manualy login every month in http://www.noip.com and update your domains to keep them alive.
+#          It will automaticaly retrieve his current public IP from http://checkip.dyndns.org/
+# Author: @LukeOwncloud, based on RB version by Felipe Molina (@felmoltor)
+# Date: July 2016
+# License: GPLv3
+
 use WWW::Mechanize;
 
 sub getIp{
