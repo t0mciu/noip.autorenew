@@ -20,16 +20,16 @@ sub setIp{
   my $mech = WWW::Mechanize->new();
   $mech->agent_alias( 'Windows Mozilla' );
   $mech -> cookie_jar(HTTP::Cookies->new());
-  $mech->quiet(1);
-  if(defined $mech -> form_id('clogs')) {
-    die("Cannot login. Password or username probably wrong.");
-  }
-  $mech->quiet(0);
   $mech -> get('https://www.noip.com/login/');
   $mech -> form_id('clogs');
   $mech -> field ('username' => $username);
   $mech -> field ('password' => $password);
   $mech -> submit ();
+  $mech->quiet(1);
+  if(defined $mech -> form_id('clogs')) {
+    die("Cannot login. Password or username probably wrong.");
+  }
+  $mech->quiet(0);
   $mech -> get('https://www.noip.com/members/dns/');
   my @links = $mech->find_all_links( text => 'Modify' )
             or die "No modify links were found.\n";
